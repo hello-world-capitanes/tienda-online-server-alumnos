@@ -1,28 +1,25 @@
-import App from './app';
-import { Router } from "express";
-
-// Middlewares
 import bodyParser from 'body-parser';
-// Controllers
-import { MainController } from './controllers/main.controller';
+import App from './app';
+// Initialize Configuration
+import { ENV_CONFIG } from './config/env.config';
+import { LoggerMiddleware } from './middlewares/logger.middleware';
 
 
-const middlewares = [
-    bodyParser.json(),
-    bodyParser.urlencoded({ extended: true }),
-];
-
-const controllers = [
-    new MainController()
-];
-
+// Express
 
 /**
- * Server Application
+ * App Middlewares
+ */
+const middlewares = [
+    bodyParser.json(),
+    new LoggerMiddleware().getMiddleware
+];
+
+/**
+ * Start application
  */
 const app = new App(
-    8000,
-    middlewares,
-    controllers,
+    (!!ENV_CONFIG.PORT ? ENV_CONFIG.PORT : ENV_CONFIG.DEFAULT_PORT),
+    middlewares
 );
 app.listen();
