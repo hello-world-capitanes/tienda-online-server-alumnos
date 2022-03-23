@@ -1,0 +1,27 @@
+{
+    "Product": [
+        {
+            "nombre": "Camion",
+            "precio": "20000",
+            "descripcion": "Es un cambión muy grande"
+        },
+
+        {
+            "nombre": "Vaso",
+            "precio": "2",
+            "descripcion": "Vasito de agua"
+        },
+
+        {
+            "nombre": "Bicicleta",
+            "precio": 200,
+            "descripcion": "Es una bici"
+        },
+
+        {
+            "nombre": "Cafe",
+            "precio": 0.76,
+            "descripcion": "Está descafeinado"
+        }
+    ]
+}
