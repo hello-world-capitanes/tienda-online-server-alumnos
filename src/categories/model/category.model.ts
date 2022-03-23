@@ -11,7 +11,7 @@ export class Category{
     }
 
     get id(): number{
-        return this.id;
+        return this._id;
     }
 
     set id(id: number){
