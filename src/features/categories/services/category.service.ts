@@ -1,6 +1,7 @@
+import { CATEGORY_ERRORS } from './../utils/category.error';
 import { CategoryDAO } from "../dao/category.dao";
 import { Category } from "../model/category.model";
-import { CATEGORY_ERRORS } from "../utils/category.error";
+
 export class CategoryService {
     
     private static _instance: CategoryService;
@@ -63,7 +64,7 @@ export class CategoryService {
             console.error(error);
             return Promise.reject(CATEGORY_ERRORS.notFound);
         }
-
+ 
         return categories?.find(category => category.id === categoryId);
 
     }
