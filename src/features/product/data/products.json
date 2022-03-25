@@ -1,6 +1,6 @@
 [
     {
-        "id": "1",
+        "id": 1,
         "nombre": "Camion",
         "precio": "20000",
         "image": "",
@@ -8,7 +8,7 @@
     },
 
     {
-        "id": "2",
+        "id": 2,
         "nombre": "Vaso",
         "image": "",
         "precio": "2",
@@ -16,7 +16,7 @@
     },
 
     {
-        "id": "3",
+        "id": 3,
         "nombre": "Bicicleta",
         "precio": 200,
         "image": "",
@@ -24,10 +24,32 @@
     },
 
     {
-        "id": "4",
+        "id": 4,
         "nombre": "Cafe",
         "precio": 0.76,
         "image": "",
         "descripcion": "Está descafeinado"
+    },
+    {
+        "id" : 5,
+        "nombre": "Camion",
+        "image": "imageUrl",
+        "precio": "20000",
+        "descripcion": "Es un cambión muy grande"
+
+    },
+    {
+        "id" : 6,
+        "nombre": "Camion2",
+        "image": "imageUrl",
+        "precio": "20000",
+        "descripcion": "Es un cambión chiquito"
+    },
+    {
+        "id" : 7,
+        "nombre": "Camion3",
+        "image": "imageUrl",
+        "precio": "20000",
+        "descripcion": "Es un cambión medio"
     }
 ]

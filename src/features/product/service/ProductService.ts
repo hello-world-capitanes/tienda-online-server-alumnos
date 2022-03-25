@@ -1,6 +1,6 @@
 import { Product } from "../models/product";
 import { PRODUCT_ERRORS } from "../utils/product.errors";
-
+import { ProductDAO } from './../dao/product.dao';
 var products = require('../data/products.json');
 
 export class ProductService {
@@ -14,11 +14,12 @@ export class ProductService {
       : new ProductService();
   }
 
-  getAllProducts(): JSON{
-    return products;
+  public async getAll(): Promise<Product[]>
+  {
+    return ProductDAO.getInstance().getAll();
   }
 
-  public async createProduct(product: Product): Promise<any | null>{
+/*   public async createProduct(product: Product): Promise<any | null>{
 
       if (!product || !product?.name || !product?.price || !product?.description){
           return Promise.reject(PRODUCT_ERRORS.notProvided);
@@ -32,7 +33,7 @@ export class ProductService {
 
       return ProductDAO.getInstance().create(product);
   }
-
+ */
   getProduct(ID: number): string{
       
       let elemento: any;

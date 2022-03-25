@@ -3,7 +3,7 @@ export class Product {
   private _name: string;
   private _image: string;
   private _price: number;
-  private _description?: string;
+  private _description?: string | undefined;
 
   constructor(
     id: number,
@@ -20,24 +20,30 @@ export class Product {
       this._description = description;
     }
   }
-
-  get id(): number {
-    return this._id;
-  }
-
-  get name(): string {
+  
+  public get name(): string {
     return this._name;
   }
-
-  get image(): string {
+  public set name(value: string) {
+    this._name = value;
+  }
+  public get image(): string {
     return this._image;
   }
-
-  get price(): number {
+  public set image(value: string) {
+    this._image = value;
+  }  
+  public get price(): number {
     return this._price;
   }
-
-  get description(): string | undefined {
+  public set price(value: number) {
+    this._price = value;
+  }  
+  public get description(): string | undefined {
     return this._description;
   }
+  public set description(value: string | undefined) {
+    this._description = value;
+  }
+
 }
