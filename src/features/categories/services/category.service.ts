@@ -102,7 +102,7 @@ export class CategoryService {
             return Promise.reject(CATEGORY_ERRORS.notExists);
         }
 
-        return CategoryDAO.getInstance().update(categoryFound);
+        return CategoryDAO.getInstance().delete(categoryFound);
 
     }
 
