@@ -1,0 +1,27 @@
+[
+    {
+        "id" : 1,
+        "nombre" : "Lacteos",
+        "descripcion" : "Productos lácteos" 
+    },
+    {
+        "id" : 2,
+        "nombre" : "Fruta",
+        "descripcion" : "Frutas" 
+    },
+    {
+        "id" : 3,
+        "nombre" : "Carne",
+        "descripcion" : "Carne" 
+    },
+    {
+        "id" : 4,
+        "nombre" : "Verduras",
+        "descripcion" : "Verduras" 
+    },
+    {
+        "id" : 5,
+        "nombre" : "Pescado",
+        "descripcion" : "Peces" 
+    }
+]
