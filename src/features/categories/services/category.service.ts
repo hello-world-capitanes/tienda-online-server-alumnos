@@ -1,6 +1,7 @@
+import { CATEGORY_ERRORS } from './../utils/category.error';
 import { CategoryDAO } from "../dao/category.dao";
 import { Category } from "../model/category.model";
-import { CATEGORY_ERRORS } from "../utils/category.error";
+
 export class CategoryService {
     
     private static _instance: CategoryService;
@@ -18,6 +19,25 @@ export class CategoryService {
                 return category;
             });
         });
+    }
+
+    public async findById(categoryId: string): Promise<Category | undefined> {
+        
+        if(!categoryId || categoryId?.length<=0){
+            return Promise.reject(CATEGORY_ERRORS.id);
+        }
+
+        let categories : Category[] = [];
+
+        try{    
+            categories = await this.getAll();
+        } catch(error){            
+            console.error(error);
+            return Promise.reject(CATEGORY_ERRORS.notFound);
+        }
+               
+        return categories?.find(category => category.id === categoryId);
+
     }
 
   /*  public async findByEmail(email: string): Promise<Category | undefined> {
