@@ -66,7 +66,7 @@ export class ProductService {
     return users?.find(userDatabase => userDatabase.name === name);
   }
 
-/*   public async delete(name: string): Promise<any | null> {
+   public async delete(name: string): Promise<any | null> {
     if (!name || name?.length <= 0) {
       return Promise.reject(PRODUCT_ERRORS.notProvided);
     }
@@ -80,4 +80,4 @@ export class ProductService {
       return ProductDAO.getInstance().update(productFound);
     }
   }
-} */
+} 
