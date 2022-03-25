@@ -48,6 +48,21 @@ export class ProductService {
       return "El producto es el siguiente: \n" +  elemento;
 
   }
+  public async findByID(userId: number): Promise<Product | undefined> {
+    if (!userId) {
+        return Promise.reject(PRODUCT_ERRORS.notProvided);
+    }
+
+    let products: Product[] = [];
+    try {
+      products = await this.getAll();
+    } catch(error) {
+      console.error(error);
+      return Promise.reject(PRODUCT_ERRORS.notFound);
+    }
+    
+    return products?.find(userDatabase => userDatabase.id === userId);
+  } 
 
   public async findByName(name: string): Promise<Product | undefined> {
     if (!name || name?.length <= 0) {
