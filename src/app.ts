@@ -1,8 +1,8 @@
-import { CategoryRoutes } from './features/categories/routes/category.routes';
 import express from 'express';
 import { HealthRoutes } from './core/routes/health.routes';
 import { MainRoutes } from './core/routes/main.routes';
 import { Routes } from './core/routes/routes';
+import { CategoryRoutes } from './features/categories/routes/category.routes';
 import { UserRoutes } from './features/user/routes/user.routes';
 
 export default class App {

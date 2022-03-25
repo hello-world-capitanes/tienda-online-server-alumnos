@@ -36,4 +36,11 @@ export class CategoryDAO extends BaseDAO {
         return FileService.getInstance().writeFile(this.DATABASE_PATH, category).then(() => category);
     }
 
+    public async delete(category: Category): Promise<Category> {
+        const catergories = await this.getAll();
+        const categoryIndex = catergories.findIndex(categoryDatabase => categoryDatabase?.id === category?.id);
+        catergories.splice(categoryIndex,1);
+        return FileService.getInstance().writeFile(this.DATABASE_PATH, catergories).then(() => category);
+    }
+
 }

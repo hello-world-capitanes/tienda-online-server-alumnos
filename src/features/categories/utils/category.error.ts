@@ -10,5 +10,9 @@ export const CATEGORY_ERRORS = {
     },
     description: {
         notProvided: "No category description provided",
+    },
+
+    id:{
+        notProvided: "No id provided",
     }
 };
