@@ -1,7 +1,6 @@
 import { Application, Request, Response } from "express";
 import { Routes } from "../../../core/routes/routes";
-import { Category } from "../model/category.model";
-//import { CategoryService } from "../services/category.service";
+import { CategoryService } from "../services/category.service";
 
 export class CategoryRoutes extends Routes {
 
@@ -21,7 +20,11 @@ export class CategoryRoutes extends Routes {
     }
 
     private getAll(req: Request, res: Response) {
-        
+        CategoryService.getInstance().getAll().then((categories => {
+            res.status(200).send(categories);
+        })).catch(error => {
+            res.status(500).send(error);
+        });
     }
 
     private get(req: Request, res: Response) {
