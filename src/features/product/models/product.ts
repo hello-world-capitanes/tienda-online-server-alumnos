@@ -5,6 +5,7 @@ export class Product {
   private _image: string;
   private _price: number;
   private _description?: string | undefined;
+  private _active: boolean;
 
   constructor(
     id: number,
@@ -17,6 +18,7 @@ export class Product {
     this._name = name;
     this._image = image;
     this._price = price;
+    this._active = true;
     if (!!description && description.length > 0) {
       this._description = description;
     }
