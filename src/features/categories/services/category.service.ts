@@ -1,7 +1,6 @@
 import { CategoryDAO } from "../dao/category.dao";
 import { Category } from "../model/category.model";
 import { CATEGORY_ERRORS } from "../utils/category.error";
-import { CategoryParser } from "../utils/category.parser";
 
 export class CategoryService {
     
@@ -14,32 +13,76 @@ export class CategoryService {
         return (!!CategoryService._instance ? CategoryService._instance : new CategoryService());
     }
 
-/*  public async getAll(): Promise<Category[]> {
-
-    }
-
-    public async findByEmail(email: string): Promise<Category | undefined> {
+    /* public async getAll(): Promise<Category[]> {
 
     }
 
     public async findById(categoryId: string): Promise<Category | undefined> {
 
     }
-
+    
     public async create(newCategory: Category): Promise<any | null> {
 
     }
 
     public async set(category: Category): Promise<any | null> {
 
+    } */
+
+    public async findById(categoryId: string): Promise<Category | undefined> {
+        if(!categoryId || categoryId.length<=0){
+            return Promise.reject(CATEGORY_ERRORS.id);
+        }
+
+        let categories : Category[] = [];
+
+        try{
+            categories = await this.getAll();
+        } catch(error){
+            console.error(error);
+            return Promise.reject(CATEGORY_ERRORS.notFound);
+        }
+
+        return categories?.find(category => {category.id === categoryId});
+
     }
 
     public async update(category: Category): Promise<any | null> {
+        if(!category){
+            return Promise.reject(CATEGORY_ERRORS.notProvided);
+        }
+        else if(!category?.id){
+            return Promise.reject(CATEGORY_ERRORS.id);
+        }
+        else if(!category.name){
+            return Promise.reject(CATEGORY_ERRORS.name);
+        }
+        else if(!category.description){
+            return Promise.reject(CATEGORY_ERRORS.description);
+        }
 
+        const categoryFound = await this.findById(category.id);
+
+        if(!categoryFound){
+            return Promise.reject(CATEGORY_ERRORS.notExists);
+        }
+
+        return CategoryDAO.getInstance().update(categoryFound);
     }
 
     public async delete(id: string): Promise<any | null> {
+        if(!id || id.length<=0){
+            return Promise.reject(CATEGORY_ERRORS.id);
+        }
 
-    } */
+        const categoryFound = await this.findById(id);
+
+        if(!categoryFound){
+            return Promise.reject(CATEGORY_ERRORS.notExists);
+        }
+
+        return CategoryDAO.getInstance().update(categoryFound);
+
+    }
 
 }

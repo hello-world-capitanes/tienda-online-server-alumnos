@@ -1,7 +1,7 @@
 import { Application, Request, Response } from "express";
 import { Routes } from "../../../core/routes/routes";
 import { Category } from "../model/category.model";
-//import { CategoryService } from "../services/category.service";
+import { CategoryService } from "../services/category.service";
 
 export class CategoryRoutes extends Routes {
 
@@ -33,7 +33,17 @@ export class CategoryRoutes extends Routes {
     }
 
     private update(req: Request, res: Response) {
-        
+        const category = req?.body?.category as Category;
+
+        if(!category){
+            return res.status(400).send("No category provided");
+        }
+
+        CategoryService.getInstance().update(category).then((category => {
+            res.status(200).send(category);
+        })).catch(error => {
+            res.status(500).send(error);
+        })
     }
 
     private partialUpdate(req: Request, res: Response) {
@@ -41,6 +51,15 @@ export class CategoryRoutes extends Routes {
     }
 
     private delete(req: Request, res: Response) {
-        
+        const category = req?.body?.category as Category;
+
+        if(!category){
+            return res.status(400).send("No category provided");
+        }
+        CategoryService.getInstance().update(category).then((category => {
+            res.status(200).send(category);
+        })).catch(error => {
+            res.status(500).send(error);
+        })
     }
 }
