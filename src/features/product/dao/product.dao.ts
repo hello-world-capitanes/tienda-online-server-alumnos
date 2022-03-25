@@ -19,10 +19,10 @@ export class ProductDAO extends BaseDAO {
     }
 
     public async getAll(): Promise<Product[]> {
-        return FileService.getInstance().readFile(this.DATABASE_PATH).then(users => (users as User[]));
+        return FileService.getInstance().readFile(this.DATABASE_PATH).then(users => (users as Product[]));
     }
 
-    public async create(newProduct: Product): Promise<Product> {
+    // public async create(newProduct: Product): Promise<Product> {
         // newPruduct.id = BaseDAO.getId();
         // newPruduct.active = true;
         // newPruduct.creationDate = new Date();
@@ -31,13 +31,13 @@ export class ProductDAO extends BaseDAO {
         // const users = await this.getAll();
         // users.push(newUser);
         // return FileService.getInstance().writeFile(this.DATABASE_PATH, users).then(() => newUser);
-    }
+    // }
 
-    public async update(Product: Product): Promise<Product> {
-        const users = await this.getAll();
-        const userIndex = users.findIndex(userDatabase => userDatabase?.email === user?.email);
-        users[userIndex] = user;
-        return FileService.getInstance().writeFile(this.DATABASE_PATH, users).then(() => user);
-    }
+    // public async update(Product: Product): Promise<Product> {
+    //     const users = await this.getAll();
+    //     const userIndex = users.findIndex(userDatabase => userDatabase?.email === user?.email);
+    //     users[userIndex] = user;
+    //     return FileService.getInstance().writeFile(this.DATABASE_PATH, users).then(() => user);
+    // }
 
 }

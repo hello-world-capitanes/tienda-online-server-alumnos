@@ -1,3 +1,5 @@
+import { ProductDAO } from './../dao/product.dao';
+import { Product } from "../models/product";
 var products = require('../data/products.json');
 
 export class ProductService {
@@ -9,6 +11,11 @@ export class ProductService {
     return !!ProductService._productService
       ? ProductService._productService
       : new ProductService();
+  }
+
+  public async getAll(): Promise<Product[]>
+  {
+    return ProductDAO.getInstance().getAll();
   }
 
   getAllProducts(): JSON{
