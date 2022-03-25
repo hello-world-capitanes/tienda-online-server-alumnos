@@ -4,9 +4,6 @@ import App from './app';
 import { ENV_CONFIG } from './config/env.config';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 
-
-// Express
-
 /**
  * App Middlewares
  */
@@ -22,4 +19,6 @@ const app = new App(
     (!!ENV_CONFIG.PORT ? ENV_CONFIG.PORT : ENV_CONFIG.DEFAULT_PORT),
     middlewares
 );
+
 app.listen();
+
