@@ -18,37 +18,21 @@ export class ProductService {
     return ProductDAO.getInstance().getAll();
   }
 
-  /*    public async createProduct(product: Product): Promise<any | null>{
-  
-        if (!product || !product?.name || !product?.price || !product?.description){
-            return Promise.reject(PRODUCT_ERRORS.notProvided);
-        }
-  
-        const productFound = await this.findByName(product.name);
-  
-        if(!!productFound) {
-            return Promise.reject(PRODUCT_ERRORS.alreadyExists);
-        }
-  
-        return ProductDAO.getInstance().create(product);
-    } */
-
-  getProduct(ID: number): string {
-
-    let elemento: any;
-    for (let i = 0; i < products.length; i++) {
-
-      if (ID == products[i].nombre) {
-        elemento = products[i];
-        break;
-      }
+  public async findByID(userId: number): Promise<Product | undefined> {
+    if (!userId) {
+        return Promise.reject(PRODUCT_ERRORS.notProvided);
     }
 
-    return "El producto es el siguiente: \n" + elemento;
-
-  }
-
-  /*  añadir mas funciones */
+    let products: Product[] = [];
+    try {
+      products = await this.getAll();
+    } catch(error) {
+      console.error(error);
+      return Promise.reject(PRODUCT_ERRORS.notFound);
+    }
+    
+    return products?.find(userDatabase => userDatabase.id === userId);
+  } 
 
   public async findByName(name: string): Promise<Product | undefined> {
     if (!name || name?.length <= 0) {

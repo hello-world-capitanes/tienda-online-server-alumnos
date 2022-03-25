@@ -1,17 +1,18 @@
 import { Application, Request, Response } from "express";
 import { Routes } from "../../../core/routes/routes";
+import { ProductService } from "../service/ProductService";
 
-export class UserRoutes extends Routes {
+export class ProductRoutes extends Routes {
 
-    static readonly USER_ROUTE = "user";
-    static readonly USERS_ROUTE = "users";
+    static readonly USER_ROUTE = "product";
+    static readonly USERS_ROUTE = "products";
 
     constructor(
         private app: Application,
     ) {
-        super(UserRoutes.USER_ROUTE);
-        // this.app.get(`${this.route}`, this.get);
-        this.app.get(this.getApiPath(UserRoutes.USERS_ROUTE), this.getAll);
+        super(ProductRoutes.USER_ROUTE);
+        this.app.get(`${this.route}`, this.get);
+        this.app.get(this.getApiPath(ProductRoutes.USERS_ROUTE), this.getAll);
         // this.app.post(this.route, this.create);
         // this.app.put(`${this.route}`, this.update);
         // this.app.patch(`${this.route}`, this.partialUpdate);
@@ -19,38 +20,38 @@ export class UserRoutes extends Routes {
     }
 
     private getAll(req: Request, res: Response) {
-        // UserService.getInstance().getAll().then((users => {
-        //     res.status(200).send(users);
-        // })).catch(error => {
-        //     res.status(500).send(error);
-        // });
+        ProductService.getInstance().getAll().then((users => {
+            res.status(200).send(users);
+        })).catch(error => {
+            res.status(500).send(error);
+        });
     }
 
-    // private get(req: Request, res: Response) {
-    //     const { id, email } = req?.query;
+    private get(req: Request, res: Response) {
+        const { id, nombre } = req?.query;
 
-    //     const hasUserId = (!!id && typeof(id) === "string" && id?.length > 0);
-    //     const hasUserEmail = (!!email && typeof(email) === "string" && email?.length > 0);
+        const hasProductId = (!!id && typeof(id) === "number");
+        const hasProductEmail = (!!nombre && typeof(nombre) === "string" && nombre?.length > 0);
 
-    //     let userOperation;
-    //     if (!hasUserId && !hasUserEmail) {
-    //         return res.status(400).send("User id not provided");
-    //     } else if (hasUserId) {
-    //         userOperation = UserService.getInstance().findById(id);
-    //     } else if (hasUserEmail) {
-    //         userOperation = UserService.getInstance().findByEmail(email);
-    //     }
+        let productOperation;
+        if (!hasProductId && !hasProductEmail) {
+            return res.status(400).send("User id not provided");
+        } else if (hasProductId) {
+            productOperation = ProductService.getInstance().findByID(id);
+        } else if (hasProductEmail) {
+            productOperation = ProductService.getInstance().findByName(nombre);
+        }
 
-    //     userOperation?.then((user => {
-    //         if (!!user) {
-    //             res.status(200).send(user);
-    //         } else {
-    //             res.status(404).send("User not found");
-    //         }
-    //     })).catch(error => {
-    //         res.status(500).send(error);
-    //     });
-    // }
+        productOperation?.then((product => {
+            if (!!product) {
+                res.status(200).send(product);
+            } else {
+                res.status(404).send("Product not found");
+            }
+        })).catch(error => {
+            res.status(500).send(error);
+        });
+    }
 
     // private create(req: Request, res: Response) {
     //     const user = req?.body?.user as User;

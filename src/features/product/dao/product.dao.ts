@@ -4,7 +4,7 @@ import { Product } from "../models/product";
 
 export class ProductDAO extends BaseDAO {
 
-    private readonly DATABASE_NAME = "product";
+    private readonly DATABASE_NAME = "products";
     private readonly DATABASE_FILE = `${this.DATABASE_NAME}.json`;
     private readonly DATABASE_PATH = `../../features/product/data/${this.DATABASE_FILE}`;
 
@@ -19,7 +19,7 @@ export class ProductDAO extends BaseDAO {
     }
 
     public async getAll(): Promise<Product[]> {
-        return FileService.getInstance().readFile(this.DATABASE_PATH).then(users => (users as Product[]));
+        return FileService.getInstance().readFile(this.DATABASE_PATH).then(products => (products as Product[]));
     }
 /* 
     public async create(newProduct: Product): Promise<Product> {
