@@ -16,7 +16,7 @@ export class ProductRoutes extends Routes {
         this.app.get(this.getApiPath(ProductRoutes.PRODUCTS_ROUTE), this.getAll);
    
         this.app.put(`${this.route}`, this.update);
-        this.app.patch(`${this.route}`, this.partialUpdate);
+        
     
     }
 
@@ -64,20 +64,10 @@ export class ProductRoutes extends Routes {
             } else {
                 res.status(404).send("Product not found");
             }
-
-
-    private partialUpdate(req: Request, res: Response) {
-        const product = req?.body?.product as Product;
-
-        if (!product) {
-            return res.status(400).send("No user provided");
-        }
-
-        ProductService.getInstance().update(product).then((product => {
-            res.status(200).send(product);
-        })).catch(error => {
-            res.status(500).send(error);
-        });
+        }))
     }
-
 }
+    
+
+    
+
