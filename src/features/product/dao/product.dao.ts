@@ -1,6 +1,6 @@
 import { BaseDAO } from "../../../core/dao/base.dao";
 import { FileService } from "../../../core/services/file.service";
-import { Product } from "../models/product";
+import { Product } from "../models/product.model";
 
 export class ProductDAO extends BaseDAO {
 
@@ -22,6 +22,12 @@ export class ProductDAO extends BaseDAO {
         return FileService.getInstance().readFile(this.DATABASE_PATH).then(product => (product as Product[]));
     }
 
+    public async update(product: Product): Promise<Product> {
+        const products = await this.getAll();
+        const productIndex = products.findIndex(productDatabase => productDatabase?.id === product?.id);
+        products[productIndex] = product;
+        return FileService.getInstance().writeFile(this.DATABASE_PATH, products).then(() => product);
+    }
     public async create(newProduct: Product): Promise<Product> {
         newProduct.id = BaseDAO.getId();
 

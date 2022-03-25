@@ -1,7 +1,7 @@
 import { Application, Request, Response } from "express";
 import { Routes } from "../../../core/routes/routes";
-import { Product } from "../models/product";
-import { ProductService } from "../service/product.service";
+import { Product } from "../models/product.model";
+import { ProductService } from "../services/product.service";
 
 export class ProductRoutes extends Routes {
 
@@ -19,25 +19,46 @@ export class ProductRoutes extends Routes {
         // this.app.put(`${this.route}`, this.update);
         // this.app.patch(`${this.route}`, this.partialUpdate);
         // this.app.delete(`${this.route}`, this.delete);
+ 
+        this.app.get(this.getApiPath(ProductRoutes.PRODUCTS_ROUTE), this.getAll);
+   
+        this.app.put(`${this.route}`, this.update);
+        
+    
     }
 
     private getAll(req: Request, res: Response) {
-        ProductService.getInstance().getAll().then((users => {
-            res.status(200).send(users);
+        ProductService.getInstance().getAll().then((products => {
+            res.status(200).send(products);
         })).catch(error => {
             res.status(500).send(error);
         });
     }
 
+    private update(req: Request, res: Response) {
+        const product = req?.body?.product as Product;
+
+        if (!product) {
+            return res.status(400).send("No product provided");
+        }
+
+        ProductService.getInstance().set(product).then((product => {
+            res.status(200).send(product);
+
+        })).catch(error => {
+            res.status(500).send(error);
+        });
+    }
+    
     private get(req: Request, res: Response) {
         const { id, nombre } = req?.query;
 
-        const hasProductId = (!!id && typeof(id) === "number");
+        const hasProductId = (!!id && typeof(id) === "string");
         const hasProductEmail = (!!nombre && typeof(nombre) === "string" && nombre?.length > 0);
 
         let productOperation;
         if (!hasProductId && !hasProductEmail) {
-            return res.status(400).send("User id not provided");
+            return res.status(400).send("Product id not provided");
         } else if (hasProductId) {
             productOperation = ProductService.getInstance().findByID(id);
         } else if (hasProductEmail) {
@@ -50,9 +71,7 @@ export class ProductRoutes extends Routes {
             } else {
                 res.status(404).send("Product not found");
             }
-        })).catch(error => {
-            res.status(500).send(error);
-        });
+        }))
     }
 
     private create(req: Request, res: Response) {
@@ -120,3 +139,7 @@ export class ProductRoutes extends Routes {
     // }
 
 }
+    
+
+    
+
