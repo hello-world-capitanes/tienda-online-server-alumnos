@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Banana",
+    "image": "banana.jpg",
+    "price": "30",
+    "description": "Banana Amarilla"
+  },
+  {
+    "id": "2",
+    "name": "Pomelo",
+    "image": "Pomelo.jpg",
+    "price": "20",
+    "description": "Pomelo Naranja"
+  },
+  {
+    "id": "3",
+    "name": "Cacahuete",
+    "image": "Cacahuete.jpg",
+    "price": "30",
+    "description": "Cacahuete"
+  }
+]
