@@ -23,10 +23,6 @@ export class CategoryService {
   /*  public async findByEmail(email: string): Promise<Category | undefined> {
 
     }
-
-    public async findById(categoryId: string): Promise<Category | undefined> {
-
-    }
     
     public async create(newCategory: Category): Promise<any | null> {
 
