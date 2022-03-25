@@ -64,7 +64,7 @@ export class CategoryService {
             return Promise.reject(CATEGORY_ERRORS.notFound);
         }
 
-        return categories?.find(category => {category.id === categoryId});
+        return categories?.find(category => category.id === categoryId);
 
     }
 
