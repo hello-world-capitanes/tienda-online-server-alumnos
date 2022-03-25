@@ -86,14 +86,6 @@ export class ProductRoutes extends Routes {
         })).catch(error => {
             res.status(500).send(error);
         });
-
-        /*
-        try {
-            const userCreate = await UserService.getInstance().create(user);
-        } catch(error) {
-            return res.status(400).send("No user provided");
-        }
-        */
     }
 
     // private update(req: Request, res: Response) {

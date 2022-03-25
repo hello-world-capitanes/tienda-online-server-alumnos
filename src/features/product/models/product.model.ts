@@ -4,17 +4,20 @@ export class Product {
   private _image: string;
   private _price: number;
   private _description?: string | undefined;
+  private _active: boolean;
 
   constructor(
     name: string,
     image: string,
     price: number,
-    description?: string
+    active: boolean,
+    description?: string,
   ) {
     this._id = "";
     this._name = name;
     this._image = image;
     this._price = price;
+    this._active = active;
     if (!!description && description.length > 0) {
       this._description = description;
     }
@@ -49,5 +52,11 @@ export class Product {
   }
   public set description(value: string | undefined) {
     this._description = value;
+  }
+  get active(): boolean {
+    return this._active;
+  }
+   set active(value: boolean) {
+    this._active = value;
   }
 }
