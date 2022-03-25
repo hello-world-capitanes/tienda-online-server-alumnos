@@ -1,7 +1,6 @@
 import { CategoryDAO } from "../dao/category.dao";
 import { Category } from "../model/category.model";
 import { CATEGORY_ERRORS } from "../utils/category.error";
-
 export class CategoryService {
     
     private static _instance: CategoryService;
@@ -13,7 +12,15 @@ export class CategoryService {
         return (!!CategoryService._instance ? CategoryService._instance : new CategoryService());
     }
 
-    /* public async getAll(): Promise<Category[]> {
+    public async getAll(): Promise<Category[]> {
+        return CategoryDAO.getInstance().getAll().then(categories=>{
+            return categories?.map(category=>{
+                return category;
+            });
+        });
+    }
+
+  /*  public async findByEmail(email: string): Promise<Category | undefined> {
 
     }
 

@@ -21,7 +21,7 @@ export default class App {
         new MainRoutes(this.expressApp),
         new HealthRoutes(this.expressApp),
         new UserRoutes(this.expressApp),
-        new CategoryRoutes(this.expressApp)
+        new CategoryRoutes(this.expressApp),
       ];
   }
 
