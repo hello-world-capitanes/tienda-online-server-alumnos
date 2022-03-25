@@ -1,3 +1,6 @@
+import { Product } from "../models/product";
+import { PRODUCT_ERRORS } from "../utils/product.errors";
+
 var products = require('../data/products.json');
 
 export class ProductService {
@@ -15,9 +18,19 @@ export class ProductService {
     return products;
   }
 
-  createProduct(product: JSON): string{
+  public async createProduct(product: Product): Promise<any | null>{
 
-      return "Se ha creado el producto: "+ product;
+      if (!product || !product?.name || !product?.price || !product?.description){
+          return Promise.reject(PRODUCT_ERRORS.notProvided);
+      }
+
+      const productFound = await this.findByName(product.name);
+
+      if(!!productFound) {
+          return Promise.reject(PRODUCT_ERRORS.alreadyExists);
+      }
+
+      return ProductDAO.getInstance().create(product);
   }
 
   getProduct(ID: number): string{
