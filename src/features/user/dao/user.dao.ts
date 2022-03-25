@@ -6,7 +6,7 @@ export class UserDAO extends BaseDAO {
 
     private readonly DATABASE_NAME = "users";
     private readonly DATABASE_FILE = `${this.DATABASE_NAME}.json`;
-    private readonly DATABASE_PATH = `../../features/user/data/${this.DATABASE_FILE}`
+    private readonly DATABASE_PATH = `../../features/user/data/${this.DATABASE_FILE}`;
 
     private static _instance: UserDAO;
 
@@ -18,17 +18,26 @@ export class UserDAO extends BaseDAO {
         return (!!UserDAO._instance ? UserDAO._instance : new UserDAO());
     }
 
-    public async getUsers(): Promise<any> {
-        return FileService.getInstance().readFile(this.DATABASE_PATH);
+    public async getAll(): Promise<User[]> {
+        return FileService.getInstance().readFile(this.DATABASE_PATH).then(users => (users as User[]));
     }
 
-    public async createUser(newUser: User): Promise<User> {
+    public async create(newUser: User): Promise<User> {
         newUser.id = BaseDAO.getId();
         newUser.active = true;
         newUser.creationDate = new Date();
-        const users = await this.getUsers();
+        // Delete deleteDate property
+        Reflect.deleteProperty(newUser, 'deleteDate');
+        const users = await this.getAll();
         users.push(newUser);
         return FileService.getInstance().writeFile(this.DATABASE_PATH, users).then(() => newUser);
+    }
+
+    public async update(user: User): Promise<User> {
+        const users = await this.getAll();
+        const userIndex = users.findIndex(userDatabase => userDatabase?.email === user?.email);
+        users[userIndex] = user;
+        return FileService.getInstance().writeFile(this.DATABASE_PATH, users).then(() => user);
     }
 
 }

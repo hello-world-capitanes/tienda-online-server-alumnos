@@ -12,28 +12,38 @@ export class UserRoutes extends Routes {
         private app: Application,
     ) {
         super(UserRoutes.USER_ROUTE);
-        this.app.post(this.route, this.postUser);
-        this.app.get(this.getApiPath(UserRoutes.USERS_ROUTE), this.getUsers);
-        this.app.get(`${this.route}/:id`, this.getUser);
+        this.app.get(`${this.route}`, this.get);
+        this.app.get(this.getApiPath(UserRoutes.USERS_ROUTE), this.getAll);
+        this.app.post(this.route, this.create);
+        this.app.put(`${this.route}`, this.update);
+        this.app.patch(`${this.route}`, this.partialUpdate);
+        this.app.delete(`${this.route}`, this.delete);
     }
 
-    private getUsers(req: Request, res: Response) {
-        UserService.getInstance().getUsers().then((users => {
+    private getAll(req: Request, res: Response) {
+        UserService.getInstance().getAll().then((users => {
             res.status(200).send(users);
         })).catch(error => {
             res.status(500).send(error);
         });
     }
 
-    private getUser(req: Request, res: Response) {
-        const userId: string = req?.params?.id
+    private get(req: Request, res: Response) {
+        const { id, email } = req?.query;
 
-        if (!userId || userId.length <= 0) {
+        const hasUserId = (!!id && typeof(id) === "string" && id?.length > 0);
+        const hasUserEmail = (!!email && typeof(email) === "string" && email?.length > 0);
+
+        let userOperation;
+        if (!hasUserId && !hasUserEmail) {
             return res.status(400).send("User id not provided");
+        } else if (hasUserId) {
+            userOperation = UserService.getInstance().findById(id);
+        } else if (hasUserEmail) {
+            userOperation = UserService.getInstance().findByEmail(email);
         }
 
-        UserService.getInstance().getUsers().then((users => {
-            const user = users.find(user => user.id === userId);
+        userOperation?.then((user => {
             if (!!user) {
                 res.status(200).send(user);
             } else {
@@ -44,14 +54,63 @@ export class UserRoutes extends Routes {
         });
     }
 
-    private postUser(req: Request, res: Response) {
+    private create(req: Request, res: Response) {
         const user = req?.body?.user as User;
 
         if (!user) {
             return res.status(400).send("No user provided");
         }
 
-        UserService.getInstance().createUser(user).then((user => {
+        UserService.getInstance().create(user).then((user => {
+            res.status(200).send(user);
+        })).catch(error => {
+            res.status(500).send(error);
+        });
+        /*
+        try {
+            const userCreate = await UserService.getInstance().create(user);
+        } catch(error) {
+            return res.status(400).send("No user provided");
+        }
+        */
+    }
+
+    private update(req: Request, res: Response) {
+        const user = req?.body?.user as User;
+
+        if (!user) {
+            return res.status(400).send("No user provided");
+        }
+
+        UserService.getInstance().set(user).then((user => {
+            res.status(200).send(user);
+        })).catch(error => {
+            res.status(500).send(error);
+        });
+    }
+
+    private partialUpdate(req: Request, res: Response) {
+        const user = req?.body?.user as User;
+
+        if (!user) {
+            return res.status(400).send("No user provided");
+        }
+
+        UserService.getInstance().update(user).then((user => {
+            res.status(200).send(user);
+        })).catch(error => {
+            res.status(500).send(error);
+        });
+    }
+
+    private delete(req: Request, res: Response) {
+        const user = req?.body?.user as User;
+
+        if (!user) {
+            return res.status(400).send("No user provided");
+        }
+
+        UserService.getInstance().update(user).then((user => {
             res.status(200).send(user);
         })).catch(error => {
             res.status(500).send(error);

@@ -4,11 +4,11 @@ export class User {
     private _email: string;
     private _name: string;
     private _lastname1: string;
-    private _lastname2: string;
+    private _lastname2?: string;
     private _active: boolean;
     private _creationDate: Date;
-    private _deleteDate: Date;
-    private _postalCode: number;
+    private _deleteDate?: Date;
+    private _postalCode?: string;
 
     constructor(
         id: string,
@@ -19,7 +19,7 @@ export class User {
         active: boolean,
         creationDate: Date,
         deleteDate: Date,
-        postalCode: number,
+        postalCode: string,
     ) {
         this._id = id;
         this._email = email;
@@ -35,7 +35,6 @@ export class User {
     get id(): string {
         return this._id;
     }
-
     set id(value: string) {
         this._id = value;
     }
@@ -43,23 +42,34 @@ export class User {
     get email(): string {
         return this._email;
     }
+    set email(value: string) {
+        this._email = value;
+    }
 
     get name(): string {
         return this._name;
+    }
+    set name(value: string) {
+        this._name = value;
     }
 
     get lastname1(): string {
         return this._lastname1;
     }
+    set lastname1(value: string) {
+        this._lastname1 = value;
+    }
 
     get lastname2(): string {
-        return this._lastname2;
+        return this._lastname2!;
+    }
+    set lastname2(value: string) {
+        this._lastname2 = value;
     }
 
     get active(): boolean {
         return this._active;
     }
-
     set active(value: boolean) {
         this._active = value;
     }
@@ -72,16 +82,16 @@ export class User {
     }
 
     public get deleteDate(): Date {
-        return this._deleteDate;
+        return this._deleteDate!;
     }
     public set deleteDate(value: Date) {
         this._deleteDate = value;
     }
 
-    public get postalCode(): number {
-        return this._postalCode;
+    public get postalCode(): string {
+        return this._postalCode!;
     }
-    public set postalCode(value: number) {
+    public set postalCode(value: string) {
         this._postalCode = value;
     }
 
