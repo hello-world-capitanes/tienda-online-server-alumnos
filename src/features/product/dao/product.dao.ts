@@ -4,7 +4,7 @@ import { Product } from "../models/product.model";
 
 export class ProductDAO extends BaseDAO {
 
-    private readonly DATABASE_NAME = "product";
+    private readonly DATABASE_NAME = "products";
     private readonly DATABASE_FILE = `${this.DATABASE_NAME}.json`;
     private readonly DATABASE_PATH = `../../features/product/data/${this.DATABASE_FILE}`;
 
