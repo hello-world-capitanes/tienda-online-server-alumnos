@@ -22,7 +22,7 @@ export class ProductDAO extends BaseDAO {
         return FileService.getInstance().readFile(this.DATABASE_PATH).then(users => (users as Product[]));
     }
 
-/*     public async create(newProduct: Product): Promise<Product> {
+    public async create(newProduct: Product): Promise<Product> {
         newProduct
         newProduct.active = true;
         newProduct.creationDate = new Date();
@@ -31,7 +31,7 @@ export class ProductDAO extends BaseDAO {
         const users = await this.getAll();
         users.push(newUser);
         return FileService.getInstance().writeFile(this.DATABASE_PATH, users).then(() => newUser);
-    } */
+    } 
 
     // public async update(Product: Product): Promise<Product> {
     //     const users = await this.getAll();

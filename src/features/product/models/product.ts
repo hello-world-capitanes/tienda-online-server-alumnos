@@ -1,5 +1,6 @@
 export class Product {
   private _id: number;
+
   private _name: string;
   private _image: string;
   private _price: number;
@@ -20,7 +21,13 @@ export class Product {
       this._description = description;
     }
   }
-  
+
+  public get id(): number {
+    return this._id;
+  }
+  public set id(value: number) {
+    this._id = value;
+  }
   public get name(): string {
     return this._name;
   }
