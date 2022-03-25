@@ -46,14 +46,14 @@ export class ProductRoutes extends Routes {
     private get(req: Request, res: Response) {
         const { id, nombre } = req?.query;
 
-        const hasProductId = (!!id && typeof(id) === "number");
+        const hasProductId = (!!id && typeof(id) === "string");
         const hasProductEmail = (!!nombre && typeof(nombre) === "string" && nombre?.length > 0);
 
         let productOperation;
         if (!hasProductId && !hasProductEmail) {
-            return res.status(400).send("User id not provided");
+            return res.status(400).send("Product id not provided");
         } else if (hasProductId) {
-            productOperation = ProductService.getInstance().findByID(id);
+            productOperation = ProductService.getInstance().findByID(parseInt(id));
         } else if (hasProductEmail) {
             productOperation = ProductService.getInstance().findByName(nombre);
         }
