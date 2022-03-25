@@ -1,7 +1,10 @@
 import bodyParser from 'body-parser';
 import App from './app';
+
 // Initialize Configuration
 import { ENV_CONFIG } from './config/env.config';
+
+// Middlewares
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 
 
