@@ -40,6 +40,7 @@ export class CategoryRoutes extends Routes {
         const category = req?.body?.category as Category;
 
         if(!category){
+            
             return res.status(400).send("No category provided");
         }
 
@@ -60,7 +61,7 @@ export class CategoryRoutes extends Routes {
         if(!category){
             return res.status(400).send("No category provided");
         }
-        CategoryService.getInstance().update(category).then((category => {
+        CategoryService.getInstance().delete(category.id).then((category => {
             res.status(200).send(category);
         })).catch(error => {
             res.status(500).send(error);
