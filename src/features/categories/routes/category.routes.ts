@@ -1,8 +1,7 @@
-import { Category } from './../model/category.model';
 import { Application, Request, Response } from "express";
 import { Routes } from "../../../core/routes/routes";
-import { Category } from "../model/category.model";
 import { CategoryService } from "../services/category.service";
+import { Category } from './../model/category.model';
 
 export class CategoryRoutes extends Routes {
 

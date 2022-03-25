@@ -51,11 +51,11 @@ export class CategoryService {
     } */
 
     public async findById(categoryId: string): Promise<Category | undefined> {
-        if(!categoryId || categoryId.length<=0){
+        if(!categoryId || categoryId.length <= 0){
             return Promise.reject(CATEGORY_ERRORS.id);
         }
 
-        let categories : Category[] = [];
+        let categories:Category[] = [];
 
         try{
             categories = await this.getAll();
@@ -92,7 +92,7 @@ export class CategoryService {
     }
 
     public async delete(id: string): Promise<any | null> {
-        if(!id || id.length<=0){
+        if(!id || id.length <= 0){
             return Promise.reject(CATEGORY_ERRORS.id);
         }
 
