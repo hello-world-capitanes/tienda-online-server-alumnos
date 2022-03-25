@@ -1,3 +1,4 @@
+import { Category } from './../model/category.model';
 import { Application, Request, Response } from "express";
 import { Routes } from "../../../core/routes/routes";
 import { Category } from "../model/category.model";
@@ -33,7 +34,15 @@ export class CategoryRoutes extends Routes {
     }
 
     private create(req: Request, res: Response) {
-        
+        const category = req?.body?.category as Category;
+        if(!category){
+            return res.status(400).send("No category provided");
+        }
+        CategoryService.getInstance().create(category).then((category => {
+            res.status(200).send(category);
+        })).catch(e => {
+            res.status(500).send(e);
+        })
     }
 
     private update(req: Request, res: Response) {
