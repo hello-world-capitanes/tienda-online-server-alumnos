@@ -1,7 +1,8 @@
 import express from 'express';
-import { HealthRoutes } from './routes/health.routes';
-import { MainRoutes } from './routes/main.routes';
-import { Routes } from './routes/routes';
+import { HealthRoutes } from './core/routes/health.routes';
+import { MainRoutes } from './core/routes/main.routes';
+import { Routes } from './core/routes/routes';
+import { UserRoutes } from './features/user/routes/user.routes';
 
 export default class App {
 
@@ -18,6 +19,7 @@ export default class App {
       this.routes = [
         new MainRoutes(this.expressApp),
         new HealthRoutes(this.expressApp),
+        new UserRoutes(this.expressApp),
       ];
   }
 
@@ -29,7 +31,9 @@ export default class App {
 
   public listen() {
     this.expressApp.listen(this.port, () => {
-      console.log(`App listening on: http://localhost:${this.port}`);
+      console.log("--------------------------------------------------");
+      console.log(`Server listening on: http://localhost:${this.port}`);
+      console.log("--------------------------------------------------");
     })
   }
 
