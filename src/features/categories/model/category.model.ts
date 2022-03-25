@@ -1,20 +1,20 @@
 export class Category{
 
-    private _id: number;
+    private _id: string;
     private _name: string;
     private _description: string;
 
-    constructor(id: number, name:string, description: string){
+    constructor(id: string, name:string, description: string){
         this._id = id;
         this._name = name;
         this._description = description;
     }
 
-    get id(): number{
+    get id(): string{
         return this._id;
     }
 
-    set id(id: number){
+    set id(id: string){
         this._id = id;
     }
 
