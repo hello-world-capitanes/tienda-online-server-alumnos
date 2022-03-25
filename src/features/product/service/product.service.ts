@@ -1,6 +1,6 @@
 import { Product } from "../models/product";
 import { PRODUCT_ERRORS } from "../utils/product.errors";
-import { ProductDAO } from './../dao/product.dao';
+import { ProductDAO } from '../dao/product.dao';
 var products = require('../data/products.json');
 
 export class ProductService {
@@ -34,21 +34,7 @@ export class ProductService {
       return ProductDAO.getInstance().create(product);
   } 
  
-  getProduct(ID: number): string{
-      
-      let elemento: any;
-      for (let i=0; i < products.length; i++){
-
-          if(ID == products[i].nombre){
-              elemento = products[i];
-              break;
-          }
-      }
-
-      return "El producto es el siguiente: \n" +  elemento;
-
-  }
-  public async findByID(userId: number): Promise<Product | undefined> {
+  public async findByID(userId: string): Promise<Product | undefined> {
     if (!userId) {
         return Promise.reject(PRODUCT_ERRORS.notProvided);
     }

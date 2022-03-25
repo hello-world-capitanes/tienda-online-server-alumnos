@@ -23,7 +23,7 @@ export class ProductDAO extends BaseDAO {
     }
 
     public async create(newProduct: Product): Promise<Product> {
-        newProduct.id = parseInt(BaseDAO.getId());
+        newProduct.id = BaseDAO.getId();
 
         const products = await this.getAll();
         products.push(newProduct);

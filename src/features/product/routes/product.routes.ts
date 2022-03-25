@@ -1,18 +1,20 @@
 import { Application, Request, Response } from "express";
 import { Routes } from "../../../core/routes/routes";
-import { ProductService } from "../service/ProductService";
+import { Product } from "../models/product";
+import { ProductService } from "../service/product.service";
 
 export class ProductRoutes extends Routes {
 
-    static readonly USER_ROUTE = "product";
-    static readonly USERS_ROUTE = "products";
+    static readonly PRODUCT_ROUTE = "product";
+    static readonly PRODUCTS_ROUTE = "products";
 
     constructor(
         private app: Application,
     ) {
-        super(ProductRoutes.USER_ROUTE);
+        super(ProductRoutes.PRODUCT_ROUTE);
         this.app.get(`${this.route}`, this.get);
-        this.app.get(this.getApiPath(ProductRoutes.USERS_ROUTE), this.getAll);
+        this.app.get(this.getApiPath(ProductRoutes.PRODUCTS_ROUTE), this.getAll);
+        this.app.post(this.getApiPath(ProductRoutes.PRODUCT_ROUTE), this.create);
         // this.app.post(this.route, this.create);
         // this.app.put(`${this.route}`, this.update);
         // this.app.patch(`${this.route}`, this.partialUpdate);
@@ -53,26 +55,27 @@ export class ProductRoutes extends Routes {
         });
     }
 
-    // private create(req: Request, res: Response) {
-    //     const user = req?.body?.user as User;
+    private create(req: Request, res: Response) {
+        const product = req?.body as Product;
 
-    //     if (!user) {
-    //         return res.status(400).send("No user provided");
-    //     }
+        if (!product) {
+            return res.status(400).send("No product provided");
+        }
 
-    //     UserService.getInstance().create(user).then((user => {
-    //         res.status(200).send(user);
-    //     })).catch(error => {
-    //         res.status(500).send(error);
-    //     });
-    //     /*
-    //     try {
-    //         const userCreate = await UserService.getInstance().create(user);
-    //     } catch(error) {
-    //         return res.status(400).send("No user provided");
-    //     }
-    //     */
-    // }
+        ProductService.getInstance().createProduct(product).then((product => {
+            res.status(200).send(product);
+        })).catch(error => {
+            res.status(500).send(error);
+        });
+
+        /*
+        try {
+            const userCreate = await UserService.getInstance().create(user);
+        } catch(error) {
+            return res.status(400).send("No user provided");
+        }
+        */
+    }
 
     // private update(req: Request, res: Response) {
     //     const user = req?.body?.user as User;

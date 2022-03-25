@@ -1,18 +1,17 @@
 export class Product {
-  private _id: number;
+  private _id: string;
   private _name: string;
   private _image: string;
   private _price: number;
   private _description?: string | undefined;
 
   constructor(
-    id: number,
     name: string,
     image: string,
     price: number,
     description?: string
   ) {
-    this._id = id;
+    this._id = "";
     this._name = name;
     this._image = image;
     this._price = price;
@@ -21,10 +20,10 @@ export class Product {
     }
   }
 
-  public get id(): number {
+  public get id(): string {
     return this._id;
   }
-  public set id(value: number) {
+  public set id(value: string) {
     this._id = value;
   }
   public get name(): string {
