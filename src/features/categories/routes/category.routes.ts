@@ -28,6 +28,26 @@ export class CategoryRoutes extends Routes {
     }
 
     private get(req: Request, res: Response) {
+        const {id} = req?.query;
+
+        const hasCategoryId = (!!id && typeof(id) === "string" && id?.length > 0);
+
+        let categoryOperation;
+        if (!hasCategoryId && !hasCategoryId) {
+            return res.status(400).send("User id not provided");
+        } else if (hasCategoryId) {
+            categoryOperation = CategoryService.getInstance().findById(id);
+        }
+
+        categoryOperation?.then((category => {
+            if (!!category) {
+                res.status(200).send(category);
+            } else {
+                res.status(404).send("Category not found");
+            }
+        })).catch(error => {
+            res.status(500).send(error);
+        });
         
     }
 
