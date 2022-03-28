@@ -1,42 +1,26 @@
 [
   {
     "id": "1",
-    "name": "Banana",
-    "image": "banana.jpg",
-    "price": "30",
-    "description": "Banana Amarilla",
+    "name": "Aceite de oliva 0.4 Hacendado",
+    "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSlbS_1j5USLi_4QC0FWdKJ8iggYFZ9hgT0g_jca1XTybeuORX78sd1nS921xcXxlckA9hcQFcx7EAlWULKKxOT3ZjYVu6OxM_hBk6AugvxtQ3BT8FeDQkgPQ&usqp=CAE",
+    "price": "21.50",
+    "description": "Garrafa 5L",
     "active": true
   },
   {
     "id": "2",
-    "name": "Pomelo",
-    "image": "Pomelo.jpg",
-    "price": "20",
-    "description": "Pomelo Naranja",
+    "name": "Aceite de oliva 0.4 Hacendado",
+    "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQwvFbno8QqSwn4ySb-FsECIjiUHnHhyK_EbP_etU-ALN7nu2s10A08DfPtIs9eiY5cH_FHPvNBiACx0S7vtjYURij9eNBf&usqp=CAE",
+    "price": "4.35",
+    "description": "Garrafa 1L",
     "active": true
   },
   {
     "id": "3",
-    "name": "Cacahuete",
-    "image": "Cacahuete.jpg",
-    "price": "30",
-    "description": "Cacahuete",
+    "name": "Aceite de oliva virgen extra Hacendado",
+    "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTcIHfqxbFzokCDYigPuw9z8dqz5GWgl3pEpD4Mbe-oegaRdwo9M88b169SE59MI3DW9MTe8q7vOrJ7kTmVSWFyqJlg-mS6Lw&usqp=CAE",
+    "price": "14.15",
+    "description": "Garrafa 3L",
     "active": true
-  },
-  {
-    "name": "VasoD9989e99A8888423324g88432u89a",
-    "image": "IMAGEN",
-    "price": "2",
-    "description": "Vasito de agua2",
-    "active": true,
-    "id": "deotfdj"
-  },
-  {
-    "name": "VasoD9989e99A88884ijbhdasdtga23324g88432u89a",
-    "image": "IMAGEN",
-    "price": "2",
-    "description": "Vasito de agua2",
-    "active": true,
-    "id": "deotfdj"
-}
+  }
 ]
