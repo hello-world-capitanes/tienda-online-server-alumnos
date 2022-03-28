@@ -1,34 +1,43 @@
+import { ProductRoutes } from './features/product/routes/product.routes';
 import express from 'express';
+import { HealthRoutes } from './core/routes/health.routes';
+import { MainRoutes } from './core/routes/main.routes';
+import { Routes } from './core/routes/routes';
+import { UserRoutes } from './features/user/routes/user.routes';
 
 export default class App {
 
-    public app: express.Application;
-    public port: number;
+  public expressApp: express.Application;
+  public port: number;
 
-    constructor(port: number, middlewares: any[], controllers: any[]) {
-        this.app = express(); //run the express instance and store in app
-        this.port = port;
-        this.middlewares(middlewares);
-        this.routes(controllers);
-    }
+  private routes: Routes[];
 
-    private middlewares(middlewares: any[]) {
-      middlewares.forEach(middleware => {
-        this.app.use(middleware)
-      })
-    }
+  constructor(port: number, middlewares?: any[]) {
+      this.expressApp = express(); //run the express instance and store in app
+      this.port = port;
+      this.middlewares(middlewares);
 
-    private routes(controllers: any[]) {
-      controllers.forEach(controller => {
-        this.app.use('/', controller?.router)
-      })
-    }
+      this.routes = [
+        new MainRoutes(this.expressApp),
+        new HealthRoutes(this.expressApp),
+        new UserRoutes(this.expressApp),
+        new ProductRoutes(this.expressApp)
+      ];
+  }
 
-    public listen() {
-      this.app.listen(this.port, () => {
-        console.log(`App listening on the http://localhost:${this.port}`);
-      })
-    }
+  private middlewares(middlewares?: any[]) {
+    middlewares?.forEach(middleware => {
+      this.expressApp.use(middleware)
+    })
+  }
+
+  public listen() {
+    this.expressApp.listen(this.port, () => {
+      console.log("--------------------------------------------------");
+      console.log(`Server listening on: http://localhost:${this.port}`);
+      console.log("--------------------------------------------------");
+    })
+  }
 
 }
 
