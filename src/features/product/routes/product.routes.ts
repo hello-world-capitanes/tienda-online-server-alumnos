@@ -12,28 +12,27 @@ export class ProductRoutes extends Routes {
         private app: Application,
     ) {
         super(ProductRoutes.PRODUCT_ROUTE);
-        this.app.get(`${this.route}`, this.get);
+        this.app.get(this.route, this.get);
         this.app.get(this.getApiPath(ProductRoutes.PRODUCTS_ROUTE), this.getAll);
-        this.app.post(this.getApiPath(ProductRoutes.PRODUCT_ROUTE), this.create);
+        this.app.post(this.route, this.create);
         // this.app.post(this.route, this.create);
         // this.app.put(`${this.route}`, this.update);
         // this.app.patch(`${this.route}`, this.partialUpdate);
         // this.app.delete(`${this.route}`, this.delete);
  
-        this.app.get(this.getApiPath(ProductRoutes.PRODUCTS_ROUTE), this.getAll);
    
         this.app.put(`${this.route}`, this.update);
         
     
     }
 
-    private getAll(req: Request, res: Response) {
+     private getAll(req: Request, res: Response) {
         ProductService.getInstance().getAll().then((products => {
             res.status(200).send(products);
         })).catch(error => {
             res.status(500).send(error);
         });
-    }
+    } 
 
     private update(req: Request, res: Response) {
         const product = req?.body?.product as Product;

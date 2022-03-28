@@ -20,7 +20,7 @@ export class ProductDAO extends BaseDAO {
 
     public async getAll(): Promise<Product[]> {
         return FileService.getInstance().readFile(this.DATABASE_PATH).then(product => (product as Product[]));
-    }
+    } 
 
     public async update(product: Product): Promise<Product> {
         const products = await this.getAll();
