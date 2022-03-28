@@ -27,13 +27,13 @@ export class ProductRoutes extends Routes {
     
     }
 
-    private getAll(req: Request, res: Response) {
+/*     private getAll(req: Request, res: Response) {
         ProductService.getInstance().getAll().then((products => {
             res.status(200).send(products);
         })).catch(error => {
             res.status(500).send(error);
         });
-    }
+    } */
 
     private update(req: Request, res: Response) {
         const product = req?.body?.product as Product;
