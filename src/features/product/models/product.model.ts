@@ -5,19 +5,20 @@ export class Product {
   private _price: number;
   private _description?: string | undefined;
   private _active: boolean;
+/*   private _categories: CategoryIdFilter[];
+  private _marca: string */
 
   constructor(
     name: string,
     image: string,
     price: number,
-    active: boolean,
     description?: string,
   ) {
     this._id = "";
     this._name = name;
     this._image = image;
     this._price = price;
-    this._active = active;
+    this._active = true;
     if (!!description && description.length > 0) {
       this._description = description;
     }
