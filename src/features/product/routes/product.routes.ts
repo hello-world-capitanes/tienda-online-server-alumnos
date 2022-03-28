@@ -88,6 +88,20 @@ export class ProductRoutes extends Routes {
         });
     }
 
+         private delete(req: Request, res: Response) {
+         const product = req?.body?.user as Product;
+
+         if (!product) {
+             return res.status(400).send("No user provided");
+         }
+
+         ProductService.getInstance().update(product).then((product => {
+             res.status(200).send(product);
+         })).catch(error => {
+             res.status(500).send(error);
+         });
+     }
+
     // private update(req: Request, res: Response) {
     //     const user = req?.body?.user as User;
 
@@ -115,21 +129,6 @@ export class ProductRoutes extends Routes {
     //         res.status(500).send(error);
     //     });
     // }
-
-    // private delete(req: Request, res: Response) {
-    //     const user = req?.body?.user as User;
-
-    //     if (!user) {
-    //         return res.status(400).send("No user provided");
-    //     }
-
-    //     UserService.getInstance().update(user).then((user => {
-    //         res.status(200).send(user);
-    //     })).catch(error => {
-    //         res.status(500).send(error);
-    //     });
-    // }
-
 }
     
 

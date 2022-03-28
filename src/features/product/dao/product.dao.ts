@@ -36,18 +36,10 @@ export class ProductDAO extends BaseDAO {
         return FileService.getInstance().writeFile(this.DATABASE_PATH, products).then(() => newProduct);
     }
 
-/*     public async delete(product: Product): Promise<Product> {
+     public async delete(product: Product): Promise<Product> {
         const products = await this.getAll();
         const productIndex = products.findIndex(productDatabase => productDatabase?.id === product?.id);
         products[productIndex] = product;
         return FileService.getInstance().writeFile(this.DATABASE_PATH, products).then(() => product);
-    } */
-
-    // public async update(Product: Product): Promise<Product> {
-    //     const users = await this.getAll();
-    //     const userIndex = users.findIndex(userDatabase => userDatabase?.email === user?.email);
-    //     users[userIndex] = user;
-    //     return FileService.getInstance().writeFile(this.DATABASE_PATH, users).then(() => user);
-    // }
-
+    } 
 }
