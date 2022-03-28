@@ -36,7 +36,7 @@ export class CategoryRoutes extends Routes {
 
         let categoryOperation;
         if (!hasCategoryId && !hasCategoryId) {
-            return res.status(400).send("User id not provided");
+            return res.status(400).send("Category id not provided");
         } else if (hasCategoryId) {
             categoryOperation = CategoryService.getInstance().findById(id);            
         }
