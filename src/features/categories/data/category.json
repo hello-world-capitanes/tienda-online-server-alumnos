@@ -1,27 +1,7 @@
 [
-    {
-        "id" : 1,
-        "nombre" : "Lacteos",
-        "descripcion" : "Productos lácteos" 
-    },
-    {
-        "id" : 2,
-        "nombre" : "Fruta",
-        "descripcion" : "Frutas" 
-    },
-    {
-        "id" : 3,
-        "nombre" : "Carne",
-        "descripcion" : "Carne" 
-    },
-    {
-        "id" : 4,
-        "nombre" : "Verduras",
-        "descripcion" : "Verduras" 
-    },
-    {
-        "id" : 5,
-        "nombre" : "Pescado",
-        "descripcion" : "Peces" 
-    }
+  { "name": "lacteos", "description": "productos lácteos", "id": "5z3bd55" },
+  { "name": "fruta", "description": "frutas", "id": "tuwh4q9" },
+  { "name": "carne", "description": "carne", "id": "kgvg4pr" },
+  { "name": "verduras", "description": "verduras", "id": "z9jcply" },
+  { "name": "pescado", "description": "pececitos", "id": "7xkjhzr" }
 ]
