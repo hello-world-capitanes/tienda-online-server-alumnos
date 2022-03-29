@@ -2,7 +2,8 @@ import { ProductDAO } from "../dao/product.dao";
 import { Product } from "../models/product.model";
 import { PRODUCT_ERRORS } from "../utils/product.errors";
 import { ProductParser } from "../utils/product.parser";
-var products = require('../data/products.json');
+
+
 export class ProductService {
 
   private static _instance: ProductService;
@@ -122,7 +123,5 @@ export class ProductService {
       return ProductDAO.getInstance().update(productFound);
     }
   }
-
-  /*  añadir mas funciones */
 
 }
