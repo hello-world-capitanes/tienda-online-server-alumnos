@@ -8,6 +8,7 @@
     "node": "14.18.1"
   },
   "scripts": {
+    "postinstall": "tsc",
     "build": "tsc --project ./",
     "start": "npm run start:prod",
     "start:dev": "npm run build && node dist/server.js",
