@@ -1,10 +1,12 @@
 import { Category } from './../model/category.model';
 import { BaseDAO } from "../../../core/dao/base.dao";
 import { FileService } from "../../../core/services/file.service";
+//Include this to load .json in build
+import categoriesJson from "../data/categories.json";
 
 export class CategoryDAO extends BaseDAO {
 
-    private readonly DATABASE_NAME = "category";
+    private readonly DATABASE_NAME = "categories";
     private readonly DATABASE_FILE = `${this.DATABASE_NAME}.json`;
     private readonly DATABASE_PATH = `../../features/categories/data/${this.DATABASE_FILE}`;
 

@@ -1,6 +1,8 @@
 import { BaseDAO } from "../../../core/dao/base.dao";
 import { FileService } from "../../../core/services/file.service";
 import { Product } from "../models/product.model";
+//Include this to load .json in build
+import productsJson from "../data/products.json";
 
 export class ProductDAO extends BaseDAO {
 

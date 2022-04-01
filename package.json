@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "14.18.1"
+  },
   "scripts": {
     "build": "tsc --project ./",
-    "start": "npm run start:hr:dev",
+    "start": "npm run start:prod",
     "start:dev": "npm run build && node dist/server.js",
-    "start:hr:dev": "nodemon src/server.ts env='development'",
+    "start:hr:dev": "nodemon --exec npx ts-node src/server.ts env='development'",
+    "start:prod": "node dist/server.js env='production'",
     "test": "jest --watchAll --collectCoverage",
     "test:unit": "jest test/unit",
     "test:integration": "jest test/integration"
