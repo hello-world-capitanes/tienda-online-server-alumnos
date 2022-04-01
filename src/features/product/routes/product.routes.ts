@@ -7,6 +7,7 @@ export class ProductRoutes extends Routes {
 
     static readonly PRODUCT_ROUTE = "product";
     static readonly PRODUCTS_ROUTE = "products";
+    static readonly PRODUCTS_ROUTE_FILTER = "productsFiltered";
 
     constructor(
         private app: Application,
@@ -14,6 +15,7 @@ export class ProductRoutes extends Routes {
         super(ProductRoutes.PRODUCT_ROUTE);
         this.app.get(this.route, this.get);
         this.app.get(this.getApiPath(ProductRoutes.PRODUCTS_ROUTE), this.getAll);
+        this.app.get(this.getApiPath(ProductRoutes.PRODUCTS_ROUTE_FILTER), this.getByFilter);
         this.app.post(this.route, this.create);
         // this.app.post(this.route, this.create);
         // this.app.put(`${this.route}`, this.update);
@@ -33,6 +35,26 @@ export class ProductRoutes extends Routes {
             res.status(500).send(error);
         });
     } 
+    private getByFilter(req: Request, res: Response) {
+        const {category} = req?.query;
+
+        const hasProductCategory = (!!category && typeof(category) === "string" && category?.length > 0);
+
+        let productOperation;
+        if (!hasProductCategory) {
+            return res.status(400).send("Product category not provided");
+        } else{
+            productOperation = ProductService.getInstance().filterByCategory(category);
+        }
+
+        productOperation?.then((product => {
+            if (!!product) {
+                res.status(200).send(product);
+            } else {
+                res.status(404).send("Product not found");
+            }
+        }))
+    } 
 
     private update(req: Request, res: Response) {
         const product = req?.body?.product as Product;
@@ -50,7 +72,7 @@ export class ProductRoutes extends Routes {
     }
     
     private get(req: Request, res: Response) {
-        const { id, nombre } = req?.query;
+        const { id, nombre} = req?.query;
 
         const hasProductId = (!!id && typeof(id) === "string");
         const hasProductEmail = (!!nombre && typeof(nombre) === "string" && nombre?.length > 0);

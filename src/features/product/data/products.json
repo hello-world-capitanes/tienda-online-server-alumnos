@@ -5,7 +5,8 @@
     "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSlbS_1j5USLi_4QC0FWdKJ8iggYFZ9hgT0g_jca1XTybeuORX78sd1nS921xcXxlckA9hcQFcx7EAlWULKKxOT3ZjYVu6OxM_hBk6AugvxtQ3BT8FeDQkgPQ&usqp=CAE",
     "price": "21.50",
     "description": "Garrafa 5L",
-    "active": true
+    "active": true,
+    "category":"verdura"
   },
   {
     "id": "2",
@@ -13,7 +14,8 @@
     "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQwvFbno8QqSwn4ySb-FsECIjiUHnHhyK_EbP_etU-ALN7nu2s10A08DfPtIs9eiY5cH_FHPvNBiACx0S7vtjYURij9eNBf&usqp=CAE",
     "price": "4.35",
     "description": "Garrafa 1L",
-    "active": true
+    "active": true,
+    "category":"fruta"
   },
   {
     "id": "3",
@@ -21,6 +23,7 @@
     "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTcIHfqxbFzokCDYigPuw9z8dqz5GWgl3pEpD4Mbe-oegaRdwo9M88b169SE59MI3DW9MTe8q7vOrJ7kTmVSWFyqJlg-mS6Lw&usqp=CAE",
     "price": "14.15",
     "description": "Garrafa 3L",
-    "active": true
+    "active": true,
+    "category":"carne"
   }
 ]

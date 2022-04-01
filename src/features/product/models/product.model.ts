@@ -1,3 +1,4 @@
+import { Category } from './../../categories/model/category.model';
 export class Product {
   private _id: string;
   private _name: string;
@@ -5,6 +6,7 @@ export class Product {
   private _price: number;
   private _description?: string | undefined;
   private _active: boolean;
+  private _category: string|undefined;
 /*   private _categories: CategoryIdFilter[];
   private _marca: string */
 
@@ -13,6 +15,7 @@ export class Product {
     image: string,
     price: number,
     description?: string,
+    category?:string,
   ) {
     this._id = "";
     this._name = name;
@@ -21,6 +24,9 @@ export class Product {
     this._active = true;
     if (!!description && description.length > 0) {
       this._description = description;
+    }
+    if (!!category && category.length > 0) {
+      this._category = category;
     }
   }
 
@@ -59,5 +65,11 @@ export class Product {
   }
    set active(value: boolean) {
     this._active = value;
+  }
+  public get category(): string | undefined {
+    return this._category;
+  }
+  public set category(value: string | undefined) {
+    this._category = value;
   }
 }

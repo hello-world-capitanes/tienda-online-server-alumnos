@@ -87,6 +87,21 @@ export class ProductService {
     return product?.find(productDatabase => productDatabase.name === name);
   }
 
+  public async filterByCategory(category: string): Promise<Product[] | undefined> {
+    if (!category || category?.length <= 0) {
+      return Promise.reject(PRODUCT_ERRORS.notProvided);
+    }
+
+    let product: Product[] = [];
+    try {
+      product = await this.getAll();
+    } catch (error) {
+      console.error(error);
+      return Promise.reject(PRODUCT_ERRORS.notFound);
+    }
+
+    return product?.filter(productDatabase => productDatabase.category === category);
+  }
   public async set(product: Product): Promise<any | null> {
     if (!product) {
       return Promise.reject(PRODUCT_ERRORS.notProvided);
