@@ -1,9 +1,7 @@
-import { filtroProducto } from './../models/filtroProducto';
 import { BaseDAO } from "../../../core/dao/base.dao";
 import { FileService } from "../../../core/services/file.service";
+import { filtroProducto } from "../models/filtroProducto";
 import { Product } from "../models/product.model";
-//Include this to load .json in build
-import productsJson from "../data/products.json";
 
 export class ProductDAO extends BaseDAO {
 
@@ -25,7 +23,7 @@ export class ProductDAO extends BaseDAO {
         if(!filtro){
             return FileService.getInstance().readFile(this.DATABASE_PATH).then(product => (product as Product[]));
         }
-        return FileService.getInstance().readFile(this.DATABASE_PATH).then(product => (product.filter(product => { product.name === filtro.name}) as Product[]));
+        return FileService.getInstance().readFile(this.DATABASE_PATH).then(product => (product as Product[]).filter(product => {product.name === product.name}));
     } 
 
     public async update(product: Product): Promise<Product> {

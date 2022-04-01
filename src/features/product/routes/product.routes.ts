@@ -1,6 +1,6 @@
-import { filtroProducto } from './../models/filtroProducto';
 import { Application, Request, Response } from "express";
 import { Routes } from "../../../core/routes/routes";
+import { filtroProducto } from "../models/filtroProducto";
 import { Product } from "../models/product.model";
 import { ProductService } from "../services/product.service";
 
