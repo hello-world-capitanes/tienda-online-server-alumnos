@@ -1,4 +1,3 @@
-import { filtroProducto } from './../../product/models/filtroProducto';
 import { Category } from './../model/category.model';
 import { BaseDAO } from "../../../core/dao/base.dao";
 import { FileService } from "../../../core/services/file.service";

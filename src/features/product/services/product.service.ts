@@ -1,4 +1,3 @@
-import { filtroProducto } from './../models/filtroProducto';
 import { ProductDAO } from "../dao/product.dao";
 import { Product } from "../models/product.model";
 import { PRODUCT_ERRORS } from "../utils/product.errors";
@@ -16,8 +15,8 @@ export class ProductService {
     return (!!ProductService._instance ? ProductService._instance : new ProductService());
   }
 
-  public async getAll(filtro?:filtroProducto): Promise<Product[]> {
-    return ProductDAO.getInstance().getAll(filtro).then(products => {
+  public async getAll(): Promise<Product[]> {
+    return ProductDAO.getInstance().getAll().then(products => {
       return products?.map(product => {
         return product;
       });

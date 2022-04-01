@@ -1,4 +1,3 @@
-import { filtroProducto } from './../../product/models/filtroProducto';
 import { CATEGORY_ERRORS } from './../utils/category.error';
 import { CategoryDAO } from "../dao/category.dao";
 import { Category } from "../model/category.model";
