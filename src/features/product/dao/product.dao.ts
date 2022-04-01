@@ -1,3 +1,4 @@
+import { filtroProducto } from './../models/filtroProducto';
 import { BaseDAO } from "../../../core/dao/base.dao";
 import { FileService } from "../../../core/services/file.service";
 import { Product } from "../models/product.model";
@@ -20,8 +21,11 @@ export class ProductDAO extends BaseDAO {
         return (!!ProductDAO._instance ? ProductDAO._instance : new ProductDAO());
     }
 
-    public async getAll(): Promise<Product[]> {
-        return FileService.getInstance().readFile(this.DATABASE_PATH).then(product => (product as Product[]));
+    public async getAll(filtro?:filtroProducto): Promise<Product[]> {
+        if(!filtro){
+            return FileService.getInstance().readFile(this.DATABASE_PATH).then(product => (product as Product[]));
+        }
+        return FileService.getInstance().readFile(this.DATABASE_PATH).then(product => (product.filter(product => { product.name === filtro.name}) as Product[]));
     } 
 
     public async update(product: Product): Promise<Product> {

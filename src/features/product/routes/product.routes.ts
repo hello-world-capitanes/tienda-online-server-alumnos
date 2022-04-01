@@ -1,3 +1,4 @@
+import { filtroProducto } from './../models/filtroProducto';
 import { Application, Request, Response } from "express";
 import { Routes } from "../../../core/routes/routes";
 import { Product } from "../models/product.model";
@@ -27,7 +28,17 @@ export class ProductRoutes extends Routes {
     }
 
      private getAll(req: Request, res: Response) {
-        ProductService.getInstance().getAll().then((products => {
+        const filtro = JSON.parse(req.query?.filtro as string) as filtroProducto;
+
+        if(!filtro){
+            ProductService.getInstance().getAll().then((products => {
+                res.status(200).send(products);
+            })).catch(error => {
+                res.status(500).send(error);
+            });
+        }
+        
+        ProductService.getInstance().getAll(filtro).then((products => {
             res.status(200).send(products);
         })).catch(error => {
             res.status(500).send(error);
@@ -50,10 +61,10 @@ export class ProductRoutes extends Routes {
     }
     
     private get(req: Request, res: Response) {
-        const { id, nombre } = req?.query;
+        const { id, name } = req?.query;
 
         const hasProductId = (!!id && typeof(id) === "string");
-        const hasProductEmail = (!!nombre && typeof(nombre) === "string" && nombre?.length > 0);
+        const hasProductEmail = (!!name && typeof(name) === "string" && name?.length > 0);
 
         let productOperation;
         if (!hasProductId && !hasProductEmail) {
@@ -61,7 +72,7 @@ export class ProductRoutes extends Routes {
         } else if (hasProductId) {
             productOperation = ProductService.getInstance().findByID(id);
         } else if (hasProductEmail) {
-            productOperation = ProductService.getInstance().findByName(nombre);
+            productOperation = ProductService.getInstance().findByName(name);
         }
 
         productOperation?.then((product => {
