@@ -1,3 +1,4 @@
+import { AuthRoutes } from './features/auth/routes/auth.routes';
 import { ProductRoutes } from './features/product/routes/product.routes';
 import express from 'express';
 import { HealthRoutes } from './core/routes/health.routes';
@@ -21,9 +22,10 @@ export default class App {
       this.routes = [
         new MainRoutes(this.expressApp),
         new HealthRoutes(this.expressApp),
+        new AuthRoutes(this.expressApp),
         new UserRoutes(this.expressApp),
         new CategoryRoutes(this.expressApp),
-        new ProductRoutes(this.expressApp)
+        new ProductRoutes(this.expressApp),
       ];
   }
 
