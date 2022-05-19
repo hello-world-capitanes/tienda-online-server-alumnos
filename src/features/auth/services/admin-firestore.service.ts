@@ -29,18 +29,19 @@ export class AdminFirestoreService extends FirestoreService {
             newUserAdmin.email,
             adminCreatorId,
             new Date,
+            true
         );
 
-        return this.getCollection().doc(userAdmin?.uid).set(Object.assign({}, userAdmin)).then(() => {
-            const user =
-                {
-                    uid: userAdmin.uid,
-                    email: userAdmin.email,
-                    creatorEmail: userAdmin.creatorEmail,
-                    creationDate: userAdmin.creationDate
-                } as IUserAdmin;
-            return user;
-        }
+        const firebaseUser =
+        {
+            uid: userAdmin.uid,
+            email: userAdmin.email,
+            creatorId: userAdmin.creatorId,
+            creationDate: userAdmin.creationDate,
+            active: userAdmin.active
+        } as IUserAdmin;
+
+        return this.getCollection().doc(userAdmin?.uid).set(Object.assign({}, firebaseUser)).then(() => {return firebaseUser}
         );
     }
 

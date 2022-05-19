@@ -1,6 +1,7 @@
 export interface IUserAdmin{
     uid:string;
     email:string;
-    creatorEmail:string;
+    creatorId:string;
     creationDate:Date;  
+    active:boolean;
 }
