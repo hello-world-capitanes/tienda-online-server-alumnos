@@ -8,7 +8,7 @@ import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { CorsMiddleware } from './middlewares/cors.middleware';
 import admin from 'firebase-admin';
 
-var serviceAccount = require("../tienda-online-mercadona-firebase-adminsdk-qcsyk-e699716e4a.json");
+var serviceAccount = require("../firebase-adminsdk.json");
 
 const firebaseApp = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

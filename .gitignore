@@ -6,3 +6,6 @@
 
 # Temp files
 .dccache
+
+# Firebase key
+firebase-adminsdk.json
